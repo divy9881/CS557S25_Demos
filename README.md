@@ -1,3 +1,4 @@
+
 ### CPU Specifications
 - Processor	13th Gen Intel(R) Core(TM) i5-1350P   1.90 GHz
 - Installed RAM	16.0 GB (15.4 GB usable)
@@ -139,7 +140,7 @@ Running test iteration  8 [Elapsed time : 136.178ms]
 Running test iteration  9 [Elapsed time : 142.118ms]
 Running test iteration 10 [Elapsed time : 137.006ms]
 
-$ export OMP_NUM_THREADS=1 
+$ export OMP_NUM_THREADS=1
 $ g++ -fopenmp -O3 main.cpp Laplacian.cpp
 $ ./a.out
 Running test iteration  1 [Elapsed time : 211.509ms]
@@ -166,10 +167,9 @@ Running test iteration  7 [Elapsed time : 20.7993ms]
 Running test iteration  8 [Elapsed time : 21.0341ms]
 Running test iteration  9 [Elapsed time : 20.4642ms]
 Running test iteration 10 [Elapsed time : 20.1989ms]
-
 ```
 
-### Laplacian_0_11
+### Laplacian_0_10_i_k_j
 ```bash
 $ export OMP_NUM_THREADS=1
 $ g++ -fopenmp main.cpp Laplacian.cpp 
@@ -228,7 +228,7 @@ Running test iteration  9 [Elapsed time : 873.619ms]
 Running test iteration 10 [Elapsed time : 872.501ms]
 ```
 
-### Laplacian_0_12
+### Laplacian_0_10_k_j_i
 ```bash
 $ export OMP_NUM_THREADS=1  
 $ g++ -fopenmp main.cpp Laplacian.cpp       
@@ -259,7 +259,7 @@ Running test iteration  9 [Elapsed time : 673.438ms]
 Running test iteration 10 [Elapsed time : 647.86ms]
 
 $ export OMP_NUM_THREADS=1
-$ g++ -fopenmp -O3 main.cpp Laplacian.cpp   
+$ g++ -fopenmp -O3 main.cpp Laplacian.cpp
 $ ./a.out
 Running test iteration  1 [Elapsed time : 1071.04ms]
 Running test iteration  2 [Elapsed time : 925.586ms]
@@ -273,7 +273,7 @@ Running test iteration  9 [Elapsed time : 1538.17ms]
 Running test iteration 10 [Elapsed time : 1383.13ms]
 
 $ export OMP_NUM_THREADS=12
-$ g++ -fopenmp -O3 main.cpp Laplacian.cpp 
+$ g++ -fopenmp -O3 main.cpp Laplacian.cpp
 $ ./a.out
 Running test iteration  1 [Elapsed time : 209.621ms]
 Running test iteration  2 [Elapsed time : 185.079ms]
