@@ -7,7 +7,25 @@
 
 #include <iostream>
 
-extern Timer timerLaplacian;
+extern Timer timerLaplacianLine2;
+extern Timer timerLaplacianLine6;
+
+extern Timer timerSaxpyLine2;
+extern Timer timerSaxpyLine8;
+extern Timer timerSaxpyLine9_12;
+extern Timer timerSaxpyLine16;
+
+extern Timer timerInnerProductLine4;
+extern Timer timerInnerProductLine6;
+extern Timer timerInnerProductLine13;
+
+extern Timer timerNormLine2;
+extern Timer timerNormLine8;
+
+extern Timer timerCopyLine4;
+extern Timer timerCopyLine13;
+
+extern Timer timerWriteAsImage;
 
 void ConjugateGradients(
     float (&x)[XDIM][YDIM][ZDIM],
@@ -18,16 +36,16 @@ void ConjugateGradients(
     const bool writeIterations)
 {
     // Algorithm : Line 2
-    timerLaplacian.Restart(); ComputeLaplacian(x, z); timerLaplacian.Pause();
-    Saxpy(z, f, r, -1);
-    float nu = Norm(r);
+    timerLaplacianLine2.Restart(); ComputeLaplacian(x, z); timerLaplacianLine2.Pause();
+    timerSaxpyLine2.Restart(); Saxpy(z, f, r, -1); timerSaxpyLine2.Pause();
+    timerNormLine2.Restart(); float nu = Norm(r); timerNormLine2.Pause();
 
     // Algorithm : Line 3
     if (nu < nuMax) return;
         
     // Algorithm : Line 4
-    Copy(r, p);
-    float rho=InnerProduct(p, r);
+    timerCopyLine4.Restart(); Copy(r, p); timerCopyLine4.Pause();
+    timerInnerProductLine4.Restart(); float rho=InnerProduct(p, r); timerInnerProductLine4.Pause();
         
     // Beginning of loop from Line 5
     for(int k=0;;k++)
@@ -35,27 +53,28 @@ void ConjugateGradients(
         std::cout << "Residual norm (nu) after " << k << " iterations = " << nu << std::endl;
 
         // Algorithm : Line 6
-        timerLaplacian.Restart(); ComputeLaplacian(p, z); timerLaplacian.Pause();
-        float sigma=InnerProduct(p, z);
+        timerLaplacianLine6.Restart(); ComputeLaplacian(p, z); timerLaplacianLine6.Pause();
+        timerInnerProductLine6.Restart(); float sigma=InnerProduct(p, z); timerInnerProductLine6.Pause();
 
         // Algorithm : Line 7
         float alpha=rho/sigma;
 
         // Algorithm : Line 8
-        Saxpy(z, r, r, -alpha);
-        nu=Norm(r);
+        timerSaxpyLine8.Restart(); Saxpy(z, r, r, -alpha); timerSaxpyLine8.Pause();
+        timerNormLine8.Restart(); nu=Norm(r); timerNormLine8.Pause();
 
         // Algorithm : Lines 9-12
         if (nu < nuMax || k == kMax) {
-            Saxpy(p, x, x, alpha);
+            timerSaxpyLine9_12.Restart(); Saxpy(p, x, x, alpha); timerSaxpyLine9_12.Pause();
             std::cout << "Conjugate Gradients terminated after " << k << " iterations; residual norm (nu) = " << nu << std::endl;
-            if (writeIterations) WriteAsImage("x", x, k, 0, 127);
+            if (writeIterations) 
+                timerWriteAsImage.Restart(); WriteAsImage("x", x, k, 0, 127); timerWriteAsImage.Pause();
             return;
         }
             
         // Algorithm : Line 13
-        Copy(r, z);
-        float rho_new = InnerProduct(z, r);
+        timerCopyLine13.Restart(); Copy(r, z); timerCopyLine13.Pause();
+        timerInnerProductLine13.Restart(); float rho_new = InnerProduct(z, r); timerInnerProductLine13.Pause();
 
         // Algorithm : Line 14
         float beta = rho_new/rho;
@@ -64,10 +83,13 @@ void ConjugateGradients(
         rho=rho_new;
 
         // Algorithm : Line 16
+        timerSaxpyLine16.Restart();
         Saxpy(p, x, x, alpha);
         Saxpy(p, r, p, beta);
+        timerSaxpyLine16.Pause();
 
-        if (writeIterations) WriteAsImage("x", x, k, 0, 127);
+        if (writeIterations)
+            timerWriteAsImage.Restart(); WriteAsImage("x", x, k, 0, 127); timerWriteAsImage.Pause();
     }
 
 }
