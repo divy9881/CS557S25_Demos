@@ -52,6 +52,8 @@ LOGO=ubuntu-logo
 $ g++ -fopenmp main.cpp Laplacian.cpp
 ```
 
+
+
 ### LaplaceSolver_0_3 serial execution
 ```bash
 $ export OMP_NUM_THREADS=1
@@ -109,6 +111,9 @@ Total time : 29346ms
 -----------------------------------------------------
 ```
 
+
+
+
 ### LaplaceSolver_0_3 parallel execution
 ```bash
 $ export OMP_NUM_THREADS=12
@@ -163,5 +168,182 @@ Total time : 23155ms
 -----------------------------------------------------
 
 [Conjugate Gradients Time : 23187.2ms]
+-----------------------------------------------------
+```
+
+
+
+
+### LaplaceSolver_0_3 Merged serial execution
+```bash
+$ export OMP_NUM_THREADS=1
+$ make
+$ ./laplace_solver
+...
+...
+Conjugate Gradients terminated after 256 iterations; residual norm (nu) = 0.000975892
+-----------------------------------------------------
+
+[Line-2 Laplacian Time : 27.428ms]
+[Line-6 Laplacian Time : 2971.38ms]
+[Line-6 Average Laplacian Time : 11.5618ms]
+Aggregated Laplacian Time : 2998ms
+-----------------------------------------------------
+
+[Line-2 Saxpy Time : 30.1041ms]
+[Line-8 Saxpy Time : 2290.66ms]
+[Line-8 Average Saxpy Time : 8.91306ms]
+[Line-9-12 Saxpy Time : 8.45638ms]
+[Line-9-12 Average Saxpy Time : 8.45638ms]
+[Line-16 Saxpy Time : 3491.99ms]
+[Line-16 Average Saxpy Time : 13.6406ms]
+Aggregated Saxpy Time : 5819ms
+-----------------------------------------------------
+
+[Line-4 InnerProduct Time : 12.61ms]
+[Line-6 InnerProduct Time : 2984.67ms]
+[Line-6 Average InnerProduct Time : 11.6135ms]
+Aggregated InnerProduct Time : 2996ms
+-----------------------------------------------------
+
+[Line-2 Norm Time : 14.8673ms]
+[Line-8 Norm Time : 4431.27ms]
+[Line-8 Average Norm Time : 17.2423ms]
+Aggregated Norm Time : 4445ms
+-----------------------------------------------------
+
+[Line-4 Copy Time : 31.2045ms]
+Aggregated Copy Time : 31ms
+-----------------------------------------------------
+
+[Merged Line-13 Time : 2937.03ms]
+[Merged Line-13 Average Time : 11.4728ms]
+-----------------------------------------------------
+
+[WriteAsImage Time : 0ms]
+WriteAsImage Time : 0ms
+-----------------------------------------------------
+
+Total time : 19226ms
+-----------------------------------------------------
+
+[Conjugate Gradients Time : 19594.6ms]
+-----------------------------------------------------
+```
+
+
+
+
+### LaplaceSolver_0_3 Merged parallel execution
+```bash
+$ export OMP_NUM_THREADS=12
+$ make
+$ ./laplace_solver
+...
+...
+Conjugate Gradients terminated after 256 iterations; residual norm (nu) = 0.000975892
+-----------------------------------------------------
+
+[Line-2 Laplacian Time : 13.9378ms]
+[Line-6 Laplacian Time : 3745.64ms]
+[Line-6 Average Laplacian Time : 14.5745ms]
+Aggregated Laplacian Time : 3758ms
+-----------------------------------------------------
+
+[Line-2 Saxpy Time : 48.0553ms]
+[Line-8 Saxpy Time : 3872.32ms]
+[Line-8 Average Saxpy Time : 15.0674ms]
+[Line-9-12 Saxpy Time : 43.2465ms]
+[Line-9-12 Average Saxpy Time : 43.2465ms]
+[Line-16 Saxpy Time : 4627.62ms]
+[Line-16 Average Saxpy Time : 18.0767ms]
+Aggregated Saxpy Time : 8590ms
+-----------------------------------------------------
+
+[Line-4 InnerProduct Time : 15.3389ms]
+[Line-6 InnerProduct Time : 1074.53ms]
+[Line-6 Average InnerProduct Time : 4.18104ms]
+Aggregated InnerProduct Time : 1089ms
+-----------------------------------------------------
+
+[Line-2 Norm Time : 9.66278ms]
+[Line-8 Norm Time : 670.698ms]
+[Line-8 Average Norm Time : 2.60972ms]
+Aggregated Norm Time : 679ms
+-----------------------------------------------------
+
+[Line-4 Copy Time : 25.7142ms]
+Aggregated Copy Time : 25ms
+-----------------------------------------------------
+
+[Merged Line-13 Time : 1063.42ms]
+[Merged Line-13 Average Time : 4.154ms]
+-----------------------------------------------------
+
+[WriteAsImage Time : 0ms]
+WriteAsImage Time : 0ms
+-----------------------------------------------------
+
+Total time : 15204ms
+-----------------------------------------------------
+
+[Conjugate Gradients Time : 15228.4ms]
+-----------------------------------------------------
+```
+
+### LaplaceSolver_0_3 Merged parallel execution
+```bash
+$ export OMP_NUM_THREADS=12
+$ make
+$ ./laplace_solver
+...
+...
+Conjugate Gradients terminated after 256 iterations; residual norm (nu) = 0.000975892
+-----------------------------------------------------
+
+[Line-2 Laplacian Time : 13.9378ms]
+[Line-6 Laplacian Time : 3745.64ms]
+[Line-6 Average Laplacian Time : 14.5745ms]
+Aggregated Laplacian Time : 3758ms
+-----------------------------------------------------
+
+[Line-2 Saxpy Time : 48.0553ms]
+[Line-8 Saxpy Time : 3872.32ms]
+[Line-8 Average Saxpy Time : 15.0674ms]
+[Line-9-12 Saxpy Time : 43.2465ms]
+[Line-9-12 Average Saxpy Time : 43.2465ms]
+[Line-16 Saxpy Time : 4627.62ms]
+[Line-16 Average Saxpy Time : 18.0767ms]
+Aggregated Saxpy Time : 8590ms
+-----------------------------------------------------
+
+[Line-4 InnerProduct Time : 15.3389ms]
+[Line-6 InnerProduct Time : 1074.53ms]
+[Line-6 Average InnerProduct Time : 4.18104ms]
+Aggregated InnerProduct Time : 1089ms
+-----------------------------------------------------
+
+[Line-2 Norm Time : 9.66278ms]
+[Line-8 Norm Time : 670.698ms]
+[Line-8 Average Norm Time : 2.60972ms]
+Aggregated Norm Time : 679ms
+-----------------------------------------------------
+
+[Line-4 Copy Time : 25.7142ms]
+Aggregated Copy Time : 25ms
+-----------------------------------------------------
+
+[Merged Line-13 Time : 1063.42ms]
+[Merged Line-13 Average Time : 4.154ms]
+-----------------------------------------------------
+
+[WriteAsImage Time : 0ms]
+WriteAsImage Time : 0ms
+-----------------------------------------------------
+
+Total time : 15204ms
+-----------------------------------------------------
+
+[Conjugate Gradients Time : 15228.4ms]
 -----------------------------------------------------
 ```

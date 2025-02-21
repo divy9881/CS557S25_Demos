@@ -3,6 +3,8 @@
 #include <algorithm>
 #include <cmath>
 
+using namespace std;
+
 float Norm(const float (&x)[XDIM][YDIM][ZDIM])
 {
     float result = 0.;
@@ -11,7 +13,7 @@ float Norm(const float (&x)[XDIM][YDIM][ZDIM])
     for (int i = 1; i < XDIM-1; i++)
     for (int j = 1; j < YDIM-1; j++)
     for (int k = 1; k < ZDIM-1; k++)
-        result = std::max(result, std::abs(x[i][j][k]));
+        result = max(result, abs(x[i][j][k]));
 
     return result;
 }
