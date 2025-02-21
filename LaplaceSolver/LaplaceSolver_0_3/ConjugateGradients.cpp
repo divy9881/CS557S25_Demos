@@ -67,8 +67,9 @@ void ConjugateGradients(
         if (nu < nuMax || k == kMax) {
             timerSaxpyLine9_12.Restart(); Saxpy(p, x, x, alpha); timerSaxpyLine9_12.Pause();
             std::cout << "Conjugate Gradients terminated after " << k << " iterations; residual norm (nu) = " << nu << std::endl;
-            if (writeIterations) 
+            if (writeIterations) {
                 timerWriteAsImage.Restart(); WriteAsImage("x", x, k, 0, 127); timerWriteAsImage.Pause();
+            }
             return;
         }
             
@@ -88,8 +89,9 @@ void ConjugateGradients(
         Saxpy(p, r, p, beta);
         timerSaxpyLine16.Pause();
 
-        if (writeIterations)
+        if (writeIterations) {
             timerWriteAsImage.Restart(); WriteAsImage("x", x, k, 0, 127); timerWriteAsImage.Pause();
+        }
     }
 
 }

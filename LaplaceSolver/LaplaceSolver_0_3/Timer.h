@@ -13,11 +13,13 @@ struct Timer
     time_point_t mStartTime;
     time_point_t mStopTime;
     elapsed_time_t mElapsedTime;
+    int counter;
     
     void Start()
     {
         mElapsedTime = elapsed_time_t::zero();
         mStartTime = clock_t::now();
+        counter += 1;
     }
     
     void Stop(const std::string& msg)
@@ -30,11 +32,13 @@ struct Timer
     void Reset()
     {
         mElapsedTime = elapsed_time_t::zero();
+        counter = 0;
     }
     
     void Restart()
     {
         mStartTime = clock_t::now();
+        counter += 1;
     }
 
     void Pause()
@@ -47,5 +51,14 @@ struct Timer
     {
         std::cout << "[" << msg << mElapsedTime.count() << "ms]" << std::endl;
     }
+
+    void PrintAverage(const std::string& msg)
+    {
+        std::cout << "[" << msg << mElapsedTime.count() / counter << "ms]" << std::endl;
+    }
     
+    int GetElapsedTime()
+    {
+        return mElapsedTime.count();
+    }
 };
