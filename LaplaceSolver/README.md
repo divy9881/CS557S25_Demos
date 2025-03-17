@@ -47,13 +47,6 @@ UBUNTU_CODENAME=plucky
 LOGO=ubuntu-logo
 ```
 
-### Compilation commands
-```bash
-$ g++ -fopenmp main.cpp Laplacian.cpp
-```
-
-
-
 ### LaplaceSolver_0_3 serial execution
 ```bash
 $ export OMP_NUM_THREADS=1
@@ -346,4 +339,79 @@ Total time : 15204ms
 
 [Conjugate Gradients Time : 15228.4ms]
 -----------------------------------------------------
+```
+
+### LaplaceSolver_1_4
+```bash
+$ make
+$ ./laplace_solver 
+[Initialization : 33307.1ms]
+Residual norm (nu) after 0 iterations = 1
+Residual norm (nu) after 1 iterations = 0.720741
+Residual norm (nu) after 2 iterations = 0.503969
+Residual norm (nu) after 3 iterations = 0.316996
+Residual norm (nu) after 4 iterations = 0.167438
+Residual norm (nu) after 5 iterations = 0.114786
+Residual norm (nu) after 6 iterations = 0.0673758
+Residual norm (nu) after 7 iterations = 0.0423407
+Residual norm (nu) after 8 iterations = 0.0429277
+Residual norm (nu) after 9 iterations = 0.0358568
+Residual norm (nu) after 10 iterations = 0.0317483
+Residual norm (nu) after 11 iterations = 0.0258011
+Residual norm (nu) after 12 iterations = 0.0200023
+Residual norm (nu) after 13 iterations = 0.0147499
+Residual norm (nu) after 14 iterations = 0.0103051
+Residual norm (nu) after 15 iterations = 0.00810947
+Residual norm (nu) after 16 iterations = 0.00639989
+Residual norm (nu) after 17 iterations = 0.00574772
+Residual norm (nu) after 18 iterations = 0.00474403
+Residual norm (nu) after 19 iterations = 0.00384194
+Residual norm (nu) after 20 iterations = 0.00263516
+Residual norm (nu) after 21 iterations = 0.0021436
+Residual norm (nu) after 22 iterations = 0.00160884
+Residual norm (nu) after 23 iterations = 0.00102262
+Conjugate Gradients terminated after 23 iterations; residual norm (nu) = 0.000850818
+[Total Laplacian Time : 3181.35ms]
+[Total Saxpy Time : 523.062ms]
+[Total Copy Time : 129.019ms]
+[Total DotProduct Time : 328.117ms]
+[Total Norm Time : 174.928ms]
+```
+
+
+### LaplaceSolver_1_4 MKL
+```bash
+$ make
+$ ./laplace_solver
+[Initialization : 82132.1ms]
+Residual norm (nu) after 0 iterations = 1
+Residual norm (nu) after 1 iterations = 0.720746
+Residual norm (nu) after 2 iterations = 0.503966
+Residual norm (nu) after 3 iterations = 0.317025
+Residual norm (nu) after 4 iterations = 0.167438
+Residual norm (nu) after 5 iterations = 0.11479
+Residual norm (nu) after 6 iterations = 0.0673855
+Residual norm (nu) after 7 iterations = 0.042335
+Residual norm (nu) after 8 iterations = 0.0428855
+Residual norm (nu) after 9 iterations = 0.0358354
+Residual norm (nu) after 10 iterations = 0.0317406
+Residual norm (nu) after 11 iterations = 0.0257948
+Residual norm (nu) after 12 iterations = 0.0199994
+Residual norm (nu) after 13 iterations = 0.0147458
+Residual norm (nu) after 14 iterations = 0.0103037
+Residual norm (nu) after 15 iterations = 0.00810744
+Residual norm (nu) after 16 iterations = 0.0063971
+Residual norm (nu) after 17 iterations = 0.00574608
+Residual norm (nu) after 18 iterations = 0.00474247
+Residual norm (nu) after 19 iterations = 0.00384114
+Residual norm (nu) after 20 iterations = 0.00263496
+Residual norm (nu) after 21 iterations = 0.00214284
+Residual norm (nu) after 22 iterations = 0.00160846
+Residual norm (nu) after 23 iterations = 0.00102251
+Conjugate Gradients terminated after 23 iterations; residual norm (nu) = 0.000850518
+[Total Laplacian Time : 5612.97ms]
+[Total Saxpy Time : 460.622ms]
+[Total Copy Time : 96.4345ms]
+[Total DotProduct Time : 220.16ms]
+[Total Norm Time : 103.169ms]
 ```
